@@ -1,0 +1,33 @@
+{
+    "uuid": "f6b4f7e4-6c46-4e88-876b-6016796e1fbd",
+    "shortName": "TeachersWatch",
+    "longName": "TeachersWatch",
+    "companyName": "IP",
+    "versionCode": 1,
+    "versionLabel": "0.1",
+    "capabilities": ["configurable"],
+    "watchapp": {
+        "watchface": true
+    },
+    "appKeys": {
+        "day0": 0,
+        "day1": 1,
+        "day2": 2,
+        "day3": 3,
+        "day4": 4,
+        "lessons": 5,
+        "vibration": 6,
+        "breaks": 7,
+        "table": 8
+    },
+    "resources": {
+        "media": [
+            {
+                "type": "font",
+                "name": "DIGITAL_56",
+                "characterRegex": "[:0-9]",
+                "file": "fonts/LED.ttf"
+            }
+        ]
+    }
+}
