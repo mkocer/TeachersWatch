@@ -1,0 +1,137 @@
+#sof
+#---------------------------------------------
+
+---------------------------------------------
+Zobrazení:
+---------------------------
+
+- horní polovina = aktuální čas, černé na bílém
+
+- oddělovač = dvojitá čára nebo rámeček okolo akt. času
+
+- dolní polovina:
+  - vyučovací hodina:
+      bílá plocha, černě zbývající čas do konce hodiny v minutách
+  - přestávka:
+    - před první vyučovací hodinou
+         a) černá plocha
+         b) černá plocha, bíle čas začátku hodiny
+    - mezi hodinami
+         a) černá plocha
+         b) černá plocha, bíle čas do začátku příští hodiny v minutách
+         c) černá plocha, bíle čas začátku hodiny (jako před první hodinou)
+    - dozor
+         a) černá plocha
+         b) černá plocha, bílý vykřičník
+         c) černá plocha, bíle čas do začátku příští hodiny, bílý vykřičník
+    - po poslední hodině
+         bílá plocha
+
+---------------------------------------------
+Nastavení:
+---------------------------
+
+časové parametry:
+---------------------------
+- délka normální hodiny v minutách: výběr z 30, 45, 60
+- délka dlouhé hodiny v minutách: výběr z 60, 90, 120
+L = jeden string tvaru: "30,90", nebo "45" 
+
+upozornění vibrací:
+---------------------------
+- vyučovací hodina / přestávka / dozor
+- začátek / konec
+- minut před / přesně / minut po / vůbec
+- více vibrací ?
+- u dozoru/přestávky po poslední hodině nemá smysl konec,
+  u přestávky před první hodinou nemá smysl začátek
+V = L string pro "lesson", resp. "B", resp. "S"
+      dvojtečka
+      "s" (start) / "e" (end)
+      pak počet minut PO, nebo - počet minut před nebo 0 = přesně,
+      a popř. bezprostředně další možnosti
+      pak po středníku další
+V=L:s0e0;S:s1
+
+způsob zobrazení přestávek:
+---------------------------
+B = 0 před první / B mezi / S dozor
+pak písmeno varianty, čárkami odděleno
+
+vyučovací den:
+---------------------------
+- začátek nulté hodiny: čas
+- jednotlivé hodiny (normální, dlouhá)
+- délka jednotlivých přestávek v minutách: výběr z 5, 10, 15, 20, 25, 30
+D = jeden string tvaru "0645N10D15N20..."
+- obdobně případné další typy vyučovacích dnů (asi jen jeden)
+D1=...
+D2=...
+D3=...
+D4=...
+
+vlastní rozvrh:
+---------------------------
+- volba jiného typu dne (jinak standardní)
+- postupně hodiny o nulté plus typy přestávek
+- toto pro pondělí až pátek
+T = jeden string ve tvaru
+     den:[Dx]LBLBLBLBLBLB
+     kde
+     den je "MO" / "TU" / ... / "FR"
+     "Dx" je případně jiný typ dne
+     "L" je hodina: "0" = volná
+                    "1" = učí se
+     "B" je přestávka: "f" = volná
+                       "s" = dozor
+     chybí-li poslední přestávka, je to "f"
+     dny jsou oddělené čárkou
+
+---------------------------------------------
+Komunikační kódy:
+---------------------------
+0 = D    day
+1 = D1   day1
+2 = D2   day2
+3 = D3   day3
+4 = D4   day4
+5 = L    lessons
+6 = V    vibration
+7 = B    breaks
+8 = T    table
+
+---------------------------------------------
+Standardní nastavení:
+---------------------------
+L=45
+D=0655N15N10N20N10N10N10N10N10N
+_____0 1 2 3 4 5 6____0 1 2 3 4 5 ____0 1 2 3 4 5 6____0 1 2 3 4 5 6 7 8____0 1 2 3 4
+T=MO:0s1f1f1f1f1f1,TU:0f1f1f1s1f1s,WE:0f0f0f1s1f1f1,TH:0f1f1s0f1f1f0f0f1,FR:1f1f1f1f1
+V=L:s0e0;S:s1
+B=0b,Bb,Sb
+
+---------------------------------------------
+Překlad:
+---------------------------
+rozvrh = timetable
+vyučování = lessons 
+vyučovací hodina = lesson
+přestávka = break
+velká přestávka = playtime
+dozor = supervision
+jídelna = school lunchroom
+po vyučování = after school
+
+
+---------------------------------------------
+Fonty:
+---------------------------
+                "characterRegex": "[:0-9]",
+
+                "file": "fonts/LED.ttf"
+                "file": "fonts/Lets_go_Digital_Regular.ttf"
+                "file": "fonts/digital-7.ttf"
+                "file": "fonts/LEDBDREV.TTF"
+                "file": "fonts/LEDBOARD.TTF"
+#---------------------------------------------
+#eof
