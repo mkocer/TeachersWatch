@@ -1,5 +1,5 @@
 // sof
-#include "pebble.h"
+#include <pebble.h>
 #include "Watch.h"
 
 #define DIAL_COLOR GColorWhite
@@ -126,3 +126,4 @@ void window_unload_watch(Window *window) {
 
 
 // eof
+

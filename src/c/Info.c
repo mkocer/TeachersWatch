@@ -1,6 +1,6 @@
-// sof
-#include "pebble.h"
+#include <pebble.h>
 #include "Info.h"
+#include <pebble-effect-layer/pebble-effect-layer.h> 
 
 #define DIAL_COLOR GColorWhite
 #define TEXT_COLOR GColorBlack

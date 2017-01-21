@@ -1,5 +1,4 @@
-// sof
-#include "pebble.h"
+#include <pebble.h>
 #include "Info.h"
 #include "Setup.h"
 

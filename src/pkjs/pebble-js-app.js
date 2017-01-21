@@ -35,17 +35,7 @@ Pebble.addEventListener("showConfiguration", function() {
     console.log("    breaks = " + getValue("breaks", "0b,Bb,Sb"));
     console.log("    table = " + getValue("table", "MO:0s1f1f1f1f1f1,TU:0f1f1f1s1f1s,WE:0f0f0f1s1f1f1,TH:0f1f1s0s1f1f0f0f1,FR:1f1f1f1f1"));
     console.log("go on");
-    Pebble.openURL('http://ivo.panacek.cz/pebble/config/TeachersWatch.html'
-            + '?day0=' + encodeURIComponent(localStorage.getItem("day0"))
-            + '&day1=' + encodeURIComponent(localStorage.getItem("day1"))
-            + '&day2=' + encodeURIComponent(localStorage.getItem("day2"))
-            + '&day3=' + encodeURIComponent(localStorage.getItem("day3"))
-            + '&day4=' + encodeURIComponent(localStorage.getItem("day4"))
-            + '&lessons=' + encodeURIComponent(localStorage.getItem("lessons"))
-            + '&vibration=' + encodeURIComponent(localStorage.getItem("vibration"))
-            + '&breaks=' + encodeURIComponent(localStorage.getItem("breaks"))
-            + '&table=' + encodeURIComponent(localStorage.getItem("table"))
-            );
+    Pebble.openURL('http://ivo.panacek.cz/pebble/config/TeachersWatch.html'  + '?day0=' + encodeURIComponent(localStorage.getItem("day0"))   + '&day1=' + encodeURIComponent(localStorage.getItem("day1"))  + '&day2=' + encodeURIComponent(localStorage.getItem("day2")) + '&day3=' + encodeURIComponent(localStorage.getItem("day3")) + '&day4=' + encodeURIComponent(localStorage.getItem("day4")) + '&lessons=' + encodeURIComponent(localStorage.getItem("lessons")) + '&vibration=' + encodeURIComponent(localStorage.getItem("vibration")) + '&breaks=' + encodeURIComponent(localStorage.getItem("breaks")) + '&table=' + encodeURIComponent(localStorage.getItem("table")) );
 });
 
 Pebble.addEventListener("webviewclosed", function(e) {

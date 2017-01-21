@@ -1,0 +1,38 @@
+{
+    "author": "IP",
+    "dependencies": {
+        "pebble-effect-layer": "^1.1.4"
+    },
+    "keywords": [],
+    "name": "TeachersWatch2",
+    "pebble": {
+        "capabilities": [
+            "configurable"
+        ],
+        "displayName": "Teachers Watch 2",
+        "enableMultiJS": false,
+        "messageKeys": [],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "characterRegex": "[:0-9]",
+                    "compatibility": "2.7",
+                    "file": "fonts/LED.ttf",
+                    "name": "DIGITAL_56",
+                    "type": "font"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt"
+        ],
+        "uuid": "a950ddd0-40e6-4e25-b615-d25749d1022d",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.0.0"
+}

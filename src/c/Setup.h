@@ -1,4 +1,3 @@
-//sof
 #pragma once
 #ifndef SETUP_H
 #define	SETUP_H
@@ -89,3 +88,4 @@ void handle_tick_setup(struct tm *t);
 
 #endif	/* SETUP_H */
 //eof
+

@@ -1,5 +1,25 @@
-
-# Ignore build generated files
-build
-
+# Shared objects 
+*.dll
+*.so
+*.so.*
+*.dylib
+*.dSYM
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+# Pebble build files
+build/
+# pebble packages 
+node_modules/
+# temporarly files
+.lock-waf_darwin_build
+tmp/*
+# Mac OS X hidden files
 .DS_Store
+# # Vim swap files
+.*.sw?
+######## END

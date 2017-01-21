@@ -1,5 +1,5 @@
 // sof
-#include "pebble.h"
+#include <pebble.h>
 #include "Watch.h"
 #include "Info.h"
 #include "Setup.h"
