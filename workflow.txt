@@ -1,0 +1,15 @@
+#### EMU
+pebble build && pebble install --emulator basalt  && pebble logs --emulator basalt &
+pebble kill
+pebble clean
+pebble wipe
+
+### PHONE
+##    on Mac OS switch-off firewall
+pebble  build
+pebble install --phone 10.70.3.190
+pebble logs --phone 10.70.3.190
+
+## cleaning
+pebble clean
+pebble wipe

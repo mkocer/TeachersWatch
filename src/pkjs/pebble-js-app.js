@@ -25,7 +25,8 @@ Pebble.addEventListener("showConfiguration", function() {
 //    console.log("    vibration = " + localStorage.getItem("vibration"));
 //    console.log("    breaks = " + localStorage.getItem("breaks"));
 //    console.log("    table = " + localStorage.getItem("table"));
-    console.log("    day0 = " + getValue("day0", "0655N15N10N20N10N10N10N10N10N10N10N10N10"));
+    //console.log("    day0 = " + getValue("day0", "0655N15N10N20N10N10N10N10N10N10N10N10N10"));
+    console.log("    day0 = " + getValue("day0", "0740N5N5N10N20N10N10N5N10N5N10N5N5"));
     console.log("    day1 = " + getValue("day1", ""));
     console.log("    day2 = " + getValue("day2", ""));
     console.log("    day3 = " + getValue("day3", ""));
@@ -33,7 +34,8 @@ Pebble.addEventListener("showConfiguration", function() {
     console.log("    lessons = " + getValue("lessons", "45"));
     console.log("    vibration = " + getValue("vibration", "L:s0e0;S:s1e-1"));
     console.log("    breaks = " + getValue("breaks", "0b,Bb,Sb"));
-    console.log("    table = " + getValue("table", "MO:0s1f1f1f1f1f1,TU:0f1f1f1s1f1s,WE:0f0f0f1s1f1f1,TH:0f1f1s0s1f1f0f0f1,FR:1f1f1f1f1"));
+    //console.log("    table = " + getValue("table", "MO:0s1f1f1f1f1f1,TU:0f1f1f1s1f1s,WE:0f0f0f1s1f1f1,TH:0f1f1s0s1f1f0f0f1,FR:1f1f1f1f1"));
+    console.log("    table = " + getValue("table", "MO:1s1f1f1f1f1f1,TU:1s1f1f1f1f1f1f1f1f1,WE:1s1f1f1f1f1f1,TH:1s1f1f1f1f1f1f1f1,FR:1s1f1f1f1f1f1"));
     console.log("go on");
     Pebble.openURL('http://ivo.panacek.cz/pebble/config/TeachersWatch.html'  + '?day0=' + encodeURIComponent(localStorage.getItem("day0"))   + '&day1=' + encodeURIComponent(localStorage.getItem("day1"))  + '&day2=' + encodeURIComponent(localStorage.getItem("day2")) + '&day3=' + encodeURIComponent(localStorage.getItem("day3")) + '&day4=' + encodeURIComponent(localStorage.getItem("day4")) + '&lessons=' + encodeURIComponent(localStorage.getItem("lessons")) + '&vibration=' + encodeURIComponent(localStorage.getItem("vibration")) + '&breaks=' + encodeURIComponent(localStorage.getItem("breaks")) + '&table=' + encodeURIComponent(localStorage.getItem("table")) );
 });

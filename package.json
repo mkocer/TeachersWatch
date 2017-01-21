@@ -1,10 +1,10 @@
 {
-    "author": "IP",
+    "author": "IP_MK",
     "dependencies": {
         "pebble-effect-layer": "^1.1.4"
     },
     "keywords": [],
-    "name": "TeachersWatch2",
+    "name": "GymjiWatch",
     "pebble": {
         "capabilities": [
             "configurable"
@@ -29,7 +29,7 @@
             "aplite",
             "basalt"
         ],
-        "uuid": "a950ddd0-40e6-4e25-b615-d25749d1022d",
+        "uuid": "5E544000-8B2A-4FD8-B486-712DF82A396C",
         "watchapp": {
             "watchface": true
         }
