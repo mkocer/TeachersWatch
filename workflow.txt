@@ -1,4 +1,5 @@
 #### EMU
+#export CFLAGS=""
 pebble build && pebble install --emulator basalt  && pebble logs --emulator basalt &
 pebble kill
 pebble clean
