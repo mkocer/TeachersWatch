@@ -5,6 +5,8 @@
 #define DIAL_COLOR GColorWhite
 #define TEXT_COLOR GColorBlack
 
+#define TEXT_LOGO "Gymji"
+
 #define LABEL_TEXT_Y 14
 #define LABEL_TEXT_H 48
 
@@ -34,7 +36,10 @@ static InverterLayer *inverter_layer;
 static TextLayer *label;
 static char buffer[10];
 static TextLayer *seconds_label;
+static TextLayer *lesson_label;
+static TextLayer *logo_label;
 static char seconds_buffer[5];
+static char lesson_buffer[3];
 static Layer *vorsicht_layer;
 static GPath *crape_path = NULL;
 
@@ -44,6 +49,7 @@ static int current_weekday; // since Sunday 0 .. 6
 static int current_hours;
 static int current_minutes;
 static int current_seconds;
+static int current_lesson;
 
 // info business interface
 
@@ -110,6 +116,7 @@ void clear_info() {
     current_hours = -1;
     current_minutes = -1;
     current_seconds = -1;
+    current_lesson = -1;
 }
 
 void show_info_as_minutes(int minutes) {
@@ -121,6 +128,13 @@ void show_info_as_minutes(int minutes) {
         layer_set_hidden(text_layer_get_layer(seconds_label), false);
     }
     text_layer_set_text(label, buffer);
+    if (current_lesson < 0) {
+        strcpy(lesson_buffer, "");
+        layer_set_hidden(text_layer_get_layer(lesson_label), true);
+    } else {
+        snprintf(lesson_buffer, sizeof (lesson_buffer), "%d", current_lesson);
+        layer_set_hidden(text_layer_get_layer(seconds_label), false);
+    }
 }
 
 void show_info_as_time(int hour, int minute) {
@@ -177,6 +191,10 @@ void show_time_info() {
     int is_lesson = (pos % 2 == 1) ? 1 : 0;
     int is_busy = (pos > 0) ? mark[current_weekday][pos - 1] : 0;
     int end_minute = week[current_weekday][pos];
+    if (is_lesson)
+        current_lesson = (pos + 1) / 2 - 1;
+    else
+        current_lesson = (pos + 1) / 2;
     if (DBG_SHOW_INFO)
         APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "show_time_info: lesson = %d, busy = %d, end = %02d:%02d", is_lesson, is_busy, end_minute / 60, end_minute % 60);
     if (!is_busy) {
@@ -290,9 +308,10 @@ void window_load_info(Window *window) {
 
     GFont font = fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD);
     GFont seconds_font = fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
+    GFont lesson_font = fonts_get_system_font(FONT_KEY_LECO_32_BOLD_NUMBERS);
 
     // time label
-    strcpy(buffer, "14");
+    strcpy(buffer, "  ");
     label = text_layer_create(GRect(layerBounds.origin.x, LABEL_TEXT_Y, layerBounds.size.w, LABEL_TEXT_H));
     text_layer_set_font(label, font);
     text_layer_set_text_alignment(label, GTextAlignmentCenter);
@@ -301,8 +320,17 @@ void window_load_info(Window *window) {
     text_layer_set_text_color(label, TEXT_COLOR);
     layer_add_child(layer, text_layer_get_layer(label));
 
+    // logo label
+    logo_label = text_layer_create(GRect(0, 0, layerBounds.size.w, 21));
+    text_layer_set_font(logo_label,fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
+    text_layer_set_text_alignment(logo_label, GTextAlignmentCenter);
+    text_layer_set_text(logo_label, TEXT_LOGO);
+    text_layer_set_background_color(logo_label, DIAL_COLOR);
+    text_layer_set_text_color(logo_label, TEXT_COLOR);
+    layer_add_child(layer, text_layer_get_layer(logo_label));
+    
     // seconds label
-    strcpy(seconds_buffer, "14");
+    strcpy(seconds_buffer, "  ");
     seconds_label = text_layer_create(GRect(layerBounds.size.w - LABEL_SECONDS_TEXT_W - 1, layerBounds.size.h - LABEL_SECONDS_TEXT_H - 1, LABEL_SECONDS_TEXT_W, LABEL_SECONDS_TEXT_H));
     text_layer_set_font(seconds_label, seconds_font);
     text_layer_set_text_alignment(seconds_label, GTextAlignmentRight);
@@ -310,6 +338,21 @@ void window_load_info(Window *window) {
     text_layer_set_background_color(seconds_label, DIAL_COLOR);
     text_layer_set_text_color(seconds_label, TEXT_COLOR);
     layer_add_child(layer, text_layer_get_layer(seconds_label));
+    
+    // lesson label
+    strcpy(lesson_buffer, "99");
+    lesson_label = text_layer_create(GRect(
+        0,
+        layerBounds.size.h - LABEL_SECONDS_TEXT_H - 1, 
+        LABEL_SECONDS_TEXT_W, 
+        LABEL_SECONDS_TEXT_H
+    ));
+    text_layer_set_font(lesson_label, lesson_font);
+    text_layer_set_text_alignment(lesson_label, GTextAlignmentLeft);
+    text_layer_set_text(lesson_label, lesson_buffer);
+    text_layer_set_background_color(lesson_label, DIAL_COLOR);
+    text_layer_set_text_color(lesson_label, TEXT_COLOR);
+    layer_add_child(layer, text_layer_get_layer(lesson_label));
 
     // add info layer
     layer_add_child(window_layer, layer);
