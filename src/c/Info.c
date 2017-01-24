@@ -1,9 +1,7 @@
 #include <pebble.h>
 #include "Info.h"
+#include "Const.h"
 #include <pebble-effect-layer/pebble-effect-layer.h> 
-
-#define DIAL_COLOR GColorWhite
-#define TEXT_COLOR GColorBlack
 
 #define TEXT_LOGO "Gymji"
 

@@ -1,9 +1,7 @@
 // sof
 #include <pebble.h>
 #include "Watch.h"
-
-#define DIAL_COLOR GColorWhite
-#define TEXT_COLOR GColorBlack
+#include "Const.h"
 
 #define LETTER_HEIGHT 70
 #define LETTER_WIDTH 28

@@ -56,6 +56,7 @@ static void init(void) {
         .load = window_load,
         .unload = window_unload,
     });
+    window_set_background_color(window, DIAL_COLOR );
 
     const bool animated = true;
     window_stack_push(window, animated);
