@@ -31,6 +31,9 @@ static int current_odd_second;
 static int current_year;
 static int current_month;
 static int current_day;
+static int current_dow;
+
+static const char *dow_to_str[] = {"ne","po","út","st","čt","pá","so","ne"};
 
 void clear_watch() {
     current_hours = -1;
@@ -39,6 +42,7 @@ void clear_watch() {
     current_year = 1970;
     current_month = 1;
     current_day = 1;
+    current_dow = 0;
 }
 
 void show_time_watch() {
@@ -61,9 +65,9 @@ void show_colon_watch() {
 }
 
 void show_date_watch() {
-    static char date_s[12];
+    static char date_s[18];
     
-    snprintf(date_s, sizeof(date_s), "%02d.%02d.%04d", current_day, current_month, current_year);
+    snprintf(date_s, sizeof(date_s), "%s %02d.%02d.%04d", dow_to_str[current_dow], current_day, current_month, current_year);
     text_layer_set_text(label_date, date_s);
 }
 
@@ -84,17 +88,18 @@ void set_colon_watch(int seconds) {
     show_colon_watch();
 }
 
-void set_date_watch(int day, int month, int year) {
+void set_date_watch(int day, int month, int year, int dow) {
     current_year = year;
     current_day= day;
     current_month= month;
+    current_dow = dow;
     show_date_watch();
 }
 
 void update_watch(struct tm *t) {
     set_time_watch(t->tm_hour, t->tm_min);
     set_colon_watch(t->tm_sec);
-    set_date_watch(t->tm_mday, t->tm_mon + 1, t->tm_year + 1900);
+    set_date_watch(t->tm_mday, t->tm_mon + 1, t->tm_year + 1900, t->tm_wday);
 }
 
 void force_update_watch() {

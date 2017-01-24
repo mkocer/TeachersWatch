@@ -13,6 +13,9 @@
 #define LABEL_SECONDS_TEXT_H 32
 #define LABEL_SECONDS_TEXT_W 30
 
+#define LABEL_LESSON_TEXT_H 20
+#define LABEL_LESSON_TEXT_W 60
+
 #define TOP_RIM_HEIGHT 2
 
 #define R 30
@@ -29,6 +32,7 @@ static const GPathInfo CRAPE_PATH_INFO = {
     }
 };
 
+
 // design data
 
 static Layer *layer;
@@ -39,7 +43,7 @@ static TextLayer *seconds_label;
 static TextLayer *lesson_label;
 static TextLayer *logo_label;
 static char seconds_buffer[5];
-static char lesson_buffer[3];
+static char lesson_buffer[11];
 static Layer *vorsicht_layer;
 static GPath *crape_path = NULL;
 
@@ -132,7 +136,7 @@ void show_info_as_minutes(int minutes) {
         strcpy(lesson_buffer, "");
         layer_set_hidden(text_layer_get_layer(lesson_label), true);
     } else {
-        snprintf(lesson_buffer, sizeof (lesson_buffer), "%d", current_lesson);
+        snprintf(lesson_buffer, sizeof (lesson_buffer), "%d.hod", current_lesson);
         layer_set_hidden(text_layer_get_layer(seconds_label), false);
     }
 }
@@ -308,7 +312,7 @@ void window_load_info(Window *window) {
 
     GFont font = fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD);
     GFont seconds_font = fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
-    GFont lesson_font = fonts_get_system_font(FONT_KEY_LECO_32_BOLD_NUMBERS);
+    GFont lesson_font = fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD);
 
     // time label
     strcpy(buffer, "  ");
@@ -340,12 +344,12 @@ void window_load_info(Window *window) {
     layer_add_child(layer, text_layer_get_layer(seconds_label));
     
     // lesson label
-    strcpy(lesson_buffer, "99");
+    strcpy(lesson_buffer, "  ");
     lesson_label = text_layer_create(GRect(
         0,
-        layerBounds.size.h - LABEL_SECONDS_TEXT_H - 1, 
-        LABEL_SECONDS_TEXT_W, 
-        LABEL_SECONDS_TEXT_H
+        layerBounds.size.h - LABEL_LESSON_TEXT_H - 1, 
+        LABEL_LESSON_TEXT_W, 
+        LABEL_LESSON_TEXT_H
     ));
     text_layer_set_font(lesson_label, lesson_font);
     text_layer_set_text_alignment(lesson_label, GTextAlignmentLeft);
@@ -353,7 +357,7 @@ void window_load_info(Window *window) {
     text_layer_set_background_color(lesson_label, DIAL_COLOR);
     text_layer_set_text_color(lesson_label, TEXT_COLOR);
     layer_add_child(layer, text_layer_get_layer(lesson_label));
-
+    
     // add info layer
     layer_add_child(window_layer, layer);
 
