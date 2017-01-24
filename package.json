@@ -16,6 +16,12 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/screenshot1.png",
+                    "name": "IMAGE_SCREEN1",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
                     "characterRegex": "[:0-9]",
                     "compatibility": "2.7",
                     "file": "fonts/LED.ttf",

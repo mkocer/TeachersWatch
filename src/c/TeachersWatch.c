@@ -104,8 +104,8 @@ int main(void) {
     //
     // set_start_time(3, 10, 39, 45);
     // set_start_time(5, 18, 39, 45);
-    // set_start_time(2, 9, 19, 45);
-    // set_start_time(1, 6, 10, 45);
+    //set_start_time(2, 5, 59, 45);
+    set_start_time(2, 8, 24, 45);
     // set_start_time(1, 7, 10, 45);
     // ---------------------------------------------------
     app_event_loop();

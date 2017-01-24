@@ -1,7 +1,6 @@
 // sof
 #include <pebble.h>
 #include "Watch.h"
-#include "Const.h"
 
 #define LETTER_HEIGHT 70
 #define LETTER_WIDTH 28

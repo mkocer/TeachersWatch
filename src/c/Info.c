@@ -1,6 +1,5 @@
 #include <pebble.h>
 #include "Info.h"
-#include "Const.h"
 #include <pebble-effect-layer/pebble-effect-layer.h> 
 
 #define TEXT_LOGO "Gymji"
@@ -283,8 +282,8 @@ void handle_tick_info(struct tm *t) {
 void vorsicht_update_proc(Layer *layer, GContext *ctx) {
     GRect bounds = layer_get_bounds(layer);
 
-    graphics_context_set_fill_color(ctx, TEXT_COLOR);
-    graphics_context_set_stroke_color(ctx, TEXT_COLOR);
+    graphics_context_set_fill_color(ctx, VORSIGHT_COLOR);
+    graphics_context_set_stroke_color(ctx, VORSIGHT_COLOR);
 
     GRect topRim = (GRect){
         { bounds.origin.x, bounds.origin.y},

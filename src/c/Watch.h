@@ -2,6 +2,7 @@
 #pragma once
 #ifndef WATCH_H
 #define	WATCH_H
+#include "Const.h"
 
 void force_update_watch();
 void window_load_watch(Window *window);
