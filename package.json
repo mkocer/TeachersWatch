@@ -11,7 +11,17 @@
         ],
         "displayName": "Teachers Watch 2",
         "enableMultiJS": false,
-        "messageKeys": [],
+        "messageKeys": [
+                "day0",
+                "day1",
+                "day2",
+                "day3",
+                "day4",
+                "lessons",
+                "vibration",
+                "breaks",
+                "table"
+            ],
         "projectType": "native",
         "resources": {
             "media": [
