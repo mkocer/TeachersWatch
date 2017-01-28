@@ -739,7 +739,7 @@ void init_setup(void) {
 
     if (COMM) {
         // Initial settings
-
+        APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "init_setup: COMM is true");
         Tuplet initial_values[] = {
             TupletCStringFixed(SETTING_DAY0, current_day0),
             TupletCStringFixed(SETTING_DAY1, current_day1),
