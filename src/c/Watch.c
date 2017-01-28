@@ -1,6 +1,7 @@
 // sof
 #include <pebble.h>
 #include "Watch.h"
+#include "battery.h"
 
 #define LETTER_HEIGHT 70
 #define LETTER_WIDTH 28
@@ -19,6 +20,7 @@
 static Layer * layer;
 static TextLayer * label[5];
 static TextLayer * label_date;
+static TextLayer * label_battery;
 static char buffer[5][3]; // just for sure
 static char buf[5]; // hour
 
@@ -61,6 +63,17 @@ void show_colon_watch() {
     text_layer_set_text(label[2], buffer[2]);
 }
 
+void show_battery_status() {
+    static char bat_s[6];
+    uint8_t bstat = get_current_battery();
+    
+    if (bstat > 150)
+        snprintf(bat_s, sizeof(bat_s), "-ch-");
+    else    
+        snprintf(bat_s, sizeof(bat_s), "%d%% ", bstat);
+    text_layer_set_text(label_battery, bat_s);
+    
+}
 void show_date_watch() {
     static char date_s[18];
     
@@ -91,6 +104,7 @@ void set_date_watch(int day, int month, int year, int dow) {
     current_month= month;
     current_dow = dow;
     show_date_watch();
+    show_battery_status();
 }
 
 void update_watch(struct tm *t) {
@@ -136,6 +150,7 @@ void window_load_watch(Window *window) {
         x += w;
         x += SPACING_WIDTH;
     }
+    // date layer
     bounds = layer_get_bounds(layer);
     label_date = text_layer_create(GRect(
              0, (bounds.origin.y - 15 + bounds.size.h), 
@@ -147,6 +162,15 @@ void window_load_watch(Window *window) {
     text_layer_set_background_color(label_date, DIAL_COLOR);
     text_layer_set_text_color(label_date, TEXT_COLOR);
     layer_add_child(layer, text_layer_get_layer(label_date));
+    // battery status layer
+    label_battery = text_layer_create(GRect(0,0,bounds.size.w ,14));
+    text_layer_set_font(label_battery, fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD));
+    text_layer_set_text_alignment(label_battery, GTextAlignmentRight);
+    text_layer_set_text(label_battery, "100 %");
+    text_layer_set_background_color(label_battery, DIAL_COLOR);
+    text_layer_set_text_color(label_battery, TEXT_COLOR);
+    layer_add_child(layer, text_layer_get_layer(label_battery));
+    // adding all to layer
     layer_add_child(window_layer, layer);
     force_update_watch();
 }

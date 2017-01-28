@@ -4,6 +4,7 @@
 #include "Info.h"
 #include "Setup.h"
 #include "TeachersWatch.h"
+#include "battery.h"
 
 static Window *window;
 
@@ -61,6 +62,7 @@ static void init(void) {
     const bool animated = true;
     window_stack_push(window, animated);
     tick_timer_service_subscribe(SECOND_UNIT, &handle_tick);
+    init_BTbat_status();
     init_setup();
 }
 

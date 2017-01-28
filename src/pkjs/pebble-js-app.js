@@ -42,6 +42,10 @@ Pebble.addEventListener("showConfiguration", function() {
 
 Pebble.addEventListener("webviewclosed", function(e) {
     console.log("configuration closed");
+    console.log("e.response ");
+    str = JSON.stringify(e, null, 4);
+    console.log(str);
+    console.log("/e.response");
     // webview closed
     if ((typeof (e.response) == 'string') && (e.response.length > 0)) {
         try {
@@ -58,7 +62,11 @@ Pebble.addEventListener("webviewclosed", function(e) {
             localStorage.setItem("breaks", decodeURIComponent(options.breaks));
             localStorage.setItem("table", decodeURIComponent(options.table));
             console.log("send options");
-            Pebble.sendAppMessage(options);
+            // Send to the watchapp
+            Pebble.sendAppMessage(options, function() {
+                   console.log('Config data sent successfully!');
+                   }, function(e) {console.log('Error sending config data!');
+            });
         } catch (e) {
         }
     }
