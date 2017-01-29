@@ -59,7 +59,8 @@ void show_colon_watch() {
     if (current_odd_second == 0)
         buffer[2][0] = ':';
     else
-        buffer[2][0] = ' ';
+        if (get_current_bt())
+            buffer[2][0] = ' ';
     text_layer_set_text(label[2], buffer[2]);
 }
 
