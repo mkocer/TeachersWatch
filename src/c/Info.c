@@ -125,7 +125,7 @@ void show_info_as_minutes(int minutes) {
         strcpy(buffer, "");
         layer_set_hidden(text_layer_get_layer(seconds_label), true);
     } else {
-        snprintf(buffer, sizeof (buffer), "%d", minutes);
+        snprintf(buffer, sizeof (buffer), "%d", minutes + 1);
         layer_set_hidden(text_layer_get_layer(seconds_label), false);
     }
     text_layer_set_text(label, buffer);
@@ -185,6 +185,7 @@ void show_time_info() {
         APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "show_time_info: pos = %d", pos);
     if (pos < 0) {
         // nothing today
+        current_lesson = -1;
         show_info_as_minutes(-1);
         setInfo(INFO_WHITE, false);
         return;

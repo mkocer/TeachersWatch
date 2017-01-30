@@ -105,7 +105,7 @@ int main(void) {
     // use this to start at given weekday and time
     //
     // set_start_time(3, 10, 39, 45);
-    // set_start_time(5, 18, 39, 45);
+    // set_start_time(4, 16, 29, 45);
     //set_start_time(2, 5, 59, 45);
     // set_start_time(2, 8, 24, 45);
     // set_start_time(1, 7, 10, 45);
