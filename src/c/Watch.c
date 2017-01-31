@@ -24,6 +24,15 @@ static TextLayer * label_battery;
 static char buffer[5][3]; // just for sure
 static char buf[5]; // hour
 
+// bluetooth icon settings
+static Layer *bluetooth_icon_layer;
+static GPath *bluetooth_path_ptr = NULL;
+static GPathInfo BT_PATH_INFO = {
+  .num_points = 18,
+  .points = (GPoint []) {{0, 1}, {2, 3}, {3, 3}, {3, 0}, {4, 0}, {6, 2}, {4, 4}, {6, 6}, {4, 8}, {3, 8}, {3, 5}, {2, 5}, {0, 7}, {2, 5}, {3, 5}, {3, 3}, {2, 3}, {0, 1}}
+};
+
+// current values 
 static int current_hours;
 static int current_minutes;
 static int current_odd_second;
@@ -42,6 +51,7 @@ void clear_watch() {
     current_month = 1;
     current_day = 1;
     current_dow = 0;
+    layer_mark_dirty(bluetooth_icon_layer);
 }
 
 void show_time_watch() {
@@ -61,6 +71,8 @@ void show_colon_watch() {
     else
         if (get_current_bt())
             buffer[2][0] = ' ';
+        else // redraw BT icon 
+            layer_mark_dirty(bluetooth_icon_layer);
     text_layer_set_text(label[2], buffer[2]);
 }
 
@@ -72,8 +84,8 @@ void show_battery_status() {
         snprintf(bat_s, sizeof(bat_s), "-ch-");
     else    
         snprintf(bat_s, sizeof(bat_s), "%d%% ", bstat);
+    layer_mark_dirty(bluetooth_icon_layer);
     text_layer_set_text(label_battery, bat_s);
-    
 }
 void show_date_watch() {
     static char date_s[18];
@@ -120,6 +132,15 @@ void force_update_watch() {
 
 void handle_tick_watch(struct tm *t) {
     update_watch(t);
+}
+
+// Draw the icon
+static void bluetooth_icon_layer_update_callback(Layer *layer, GContext* ctx) {
+    if (get_current_bt()) 
+        graphics_context_set_stroke_color(ctx, TEXT_COLOR);
+    else 
+        graphics_context_set_stroke_color(ctx, DIAL_COLOR);
+    gpath_draw_outline(ctx, bluetooth_path_ptr);
 }
 
 void window_load_watch(Window *window) {
@@ -171,6 +192,12 @@ void window_load_watch(Window *window) {
     text_layer_set_background_color(label_battery, DIAL_COLOR);
     text_layer_set_text_color(label_battery, TEXT_COLOR);
     layer_add_child(layer, text_layer_get_layer(label_battery));
+    // BT icon layer
+    bluetooth_icon_layer = layer_create(GRect(2, 2, 7, 9));
+    bluetooth_path_ptr = gpath_create(&BT_PATH_INFO);
+    layer_set_update_proc(bluetooth_icon_layer, bluetooth_icon_layer_update_callback);
+    layer_add_child(layer, bluetooth_icon_layer);
+    
     // adding all to layer
     layer_add_child(window_layer, layer);
     force_update_watch();
