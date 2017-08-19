@@ -41,7 +41,7 @@ static int current_month;
 static int current_day;
 static int current_dow;
 
-static const char *dow_to_str[] = {"ne","po","út","st","čt","pá","so","ne"};
+static const char *dow_to_str[] = {"Ne","Po","Út","St","Čt","Pá","So","Ne"};
 
 void clear_watch() {
     current_hours = -1;
@@ -175,10 +175,10 @@ void window_load_watch(Window *window) {
     // date layer
     bounds = layer_get_bounds(layer);
     label_date = text_layer_create(GRect(
-             0, (bounds.origin.y - 15 + bounds.size.h), 
-             bounds.size.w, 14
+             0, (bounds.origin.y - 19 + bounds.size.h), 
+             bounds.size.w, 18
     ));
-    text_layer_set_font(label_date, fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD));
+    text_layer_set_font(label_date, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
     text_layer_set_text_alignment(label_date, GTextAlignmentCenter);
     text_layer_set_text(label_date, "01.02.2013");
     text_layer_set_background_color(label_date, DIAL_COLOR);

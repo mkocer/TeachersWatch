@@ -2,7 +2,7 @@
 #include "Info.h"
 #include <pebble-effect-layer/pebble-effect-layer.h> 
 
-#define TEXT_LOGO "Gymji"
+#define TEXT_LOGO "Gymji ČBu"
 
 #define LABEL_TEXT_Y 14
 #define LABEL_TEXT_H 48

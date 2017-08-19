@@ -17,7 +17,7 @@
 #define DEFAULT_DX ""
 #define MAX_T 160
 //#define DEFAULT_T "MO:0s1f1f1f1f1f1,TU:0f1f1f1s1f1s,WE:0f0f0f1s1f1f1,TH:0f1f1s0s1f1f0f0f1,FR:1f1f1f1f1"
-#define DEFAULT_T "MO:1s1f1f1f1f1f1,TU:1s1f1f1f1f1f1f1f1f1,WE:1s1f1f1f1f1f1,TH:1s1f1f1f1f1f1f1f1f1,FR:1s1f1f1f1f1f1"
+#define DEFAULT_T "MO:1s1f1f1f1f1f1,TU:1s1f1f1f1f1f1f1f1f1,WE:1s1f1f1f1f1f1,TH:1s1s1s1s1s1f1f1f1f1,FR:1s1s1s1s1f1f1f1"
 //#define DEFAULT_T "WE:0f0f0f1s1f1f1"
 #define MAX_V 16
 #define DEFAULT_V "L:s0e0;S:s1e-1"
